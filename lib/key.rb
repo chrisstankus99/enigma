@@ -9,12 +9,12 @@ class Key
     rand(1..99999).to_s.rjust(5, "0")
   end
 
-  def key_set
-    key_set_hash = {}
-    key_set_hash["A"] = @keys.scan(/\d/).join('')[0, 2].to_i
-    key_set_hash["B"] = @keys.scan(/\d/).join('')[1, 2].to_i
-    key_set_hash["C"] = @keys.scan(/\d/).join('')[2, 2].to_i
-    key_set_hash["D"] = @keys.scan(/\d/).join('')[3, 3].to_i
-    key_set_hash
+  def key_sets
+    key_sets_hash = {}
+    key_sets_hash["A"] = @keys.scan(/\d/).join('')[0, 2].to_i
+    key_sets_hash["B"] = @keys.scan(/\d/).join('')[1, 2].to_i
+    key_sets_hash["C"] = @keys.scan(/\d/).join('')[2, 2].to_i
+    key_sets_hash["D"] = @keys.scan(/\d/).join('')[3, 3].to_i
+    key_sets_hash
   end
 end

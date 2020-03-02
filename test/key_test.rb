@@ -22,13 +22,13 @@ class KeyTest < Minitest::Test
     assert_equal 5, @key.number_generator.size
   end
 
-  def test_key_set
+  def test_key_sets
     expected = {
       "A" => 02,
       "B" => 27,
       "C" => 71,
       "D" => 15
     }
-    assert_equal expected, @key.key_set
+    assert_equal expected, @key.key_sets
   end
 end

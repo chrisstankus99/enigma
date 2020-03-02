@@ -1,5 +1,7 @@
 require_relative 'test_helper'
 require './lib/enigma'
+require './lib/offset'
+require './lib/key'
 require 'date'
 
 class EnigmaTest < Minitest::Test
