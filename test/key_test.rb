@@ -16,12 +16,19 @@ class KeyTest < Minitest::Test
   def test_attributes
     assert_equal "02715", @key.keys
   end
-end
 
-# The Keys
-# The keys are created by generating a random five digit number, like 02715, and splitting it up like so:
-#
-# A key: first two digits (02)
-# B key: second and third digits (27)
-# C key: third and fourth digits (71)
-# D key: fourth and fifth digits (15)
+  def test_number_generator
+    assert_instance_of String, @key.number_generator
+    assert_equal 5, @key.number_generator.size
+  end
+
+  def test_key_set
+    expected = {
+      "A" => 02,
+      "B" => 27,
+      "C" => 71,
+      "D" => 15
+    }
+    assert_equal expected, @key.key_set
+  end
+end
