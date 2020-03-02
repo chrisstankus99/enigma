@@ -22,8 +22,18 @@ class OffsetTest < Minitest::Test
     assert_equal 6, @offset.generate_date.size
   end
 
-  def test_date_squared
-    assert_equal 1672401025, @offset.date_squared
+  def test_last_four_of_date_squared
+    assert_equal "1025", @offset.last_four_of_date_squared
+  end
+
+  def test_date_sets
+    expected = {
+      "A" => 1,
+      "B" => 0,
+      "C" => 2,
+      "D" => 5
+    }
+    assert_equal expected, @offset.date_sets
   end
 end
 
