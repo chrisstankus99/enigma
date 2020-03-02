@@ -15,6 +15,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_enigma_can_encrypt
+    skip
     expected = {
         encryption: "keder ohulw",
         key: "02715",
