@@ -19,9 +19,9 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.letters
   end
 
-  def test_generate_keys
-    assert_instance_of String, @enigma.generate_keys
-    assert_equal 5, @enigma.generate_keys.size
+  def test_generate_key
+    assert_instance_of String, @enigma.generate_key
+    assert_equal 5, @enigma.generate_key.size
   end
 
   def test_generate_date
@@ -46,7 +46,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_key_sets
-    @enigma.stubs(:generate_keys).returns("02715")
+    @enigma.stubs(:generate_key).returns("02715")
     expected = {
       "A" => 02,
       "B" => 27,
@@ -91,16 +91,23 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "keder ohulw", @enigma.encryption("hello world", "02715", "040895")
   end
+
+  def test_enigma_encrypt
+    @enigma.stubs(:shift).returns({
+      "A"=>3,
+      "B"=>27,
+      "C"=>73,
+      "D"=>20
+    })
+    @enigma.stubs(:message).returns("hello world")
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+  end
 end
-# # encrypt a message with a key and date
-# pry(main)> enigma.encrypt("hello world", "02715", "040895")
-# #=>
-  # {
-  #   encryption: "keder ohulw",
-  #   key: "02715",
-  #   date: "040895"
-  # }
-#
 # # decrypt a message with a key and date
 # pry(main) > enigma.decrypt("keder ohulw", "02715", "040895")
 # #=>
