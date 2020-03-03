@@ -46,11 +46,8 @@ class Enigma
   end
 
   def encrypt(message, key, date)
-    # shift = Shift.new(date, key)
-    # shift.find_shift.each_value do |shift_position|
-    #   encrypter  = Hash[@char_set.zip(@char_set.rotate(shift_position))]
-    #   message.chars.map { |c| encrypter.fetch(c, " ") }
-    #   require "pry"; binding.pry
-    # end
+    shift.each_value do |shift_position|
+      require "pry"; binding.pry
+    end
   end
 end

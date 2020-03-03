@@ -6,10 +6,7 @@ require 'date'
 class EnigmaTest < Minitest::Test
 
   def setup
-    @offset = Offset.new("040895")
-    @key = Key.new("02715")
     @enigma = Enigma.new
-    @shift = Shift.new(@offset, @key)
   end
 
   def test_it_exists
@@ -80,14 +77,20 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_enigma_can_encrypt
-    skip
+    # skip
+    @enigma.stubs(:shift).returns({
+      "A"=>3,
+      "B"=>27,
+      "C"=>73,
+      "D"=>20
+    })
     expected = {
         encryption: "keder ohulw",
         key: "02715",
         date: "040895"
       }
-    assert_equal expected, @enigma.encrypt("hello world", @key = Key.new("02715"),
-     @offset = Offset.new("040895"))
+    assert_equal expected, @enigma.encrypt("hello world", "02715",
+     "040895")
   end
 end
 # # encrypt a message with a key and date
