@@ -45,9 +45,26 @@ class Enigma
     end
   end
 
-  def encrypt(message, key, date)
-    shift.each_value do |shift_position|
-      require "pry"; binding.pry
+  def message_split(message)
+    message.split(//)
+  end
+
+  def encryption(message, key, date)
+    message_split = message_split(message)
+    updated_message = ""
+    loop do
+      shift.each do |shift_key, shift_amount|
+        index = letters.index(message_split[0])
+        if letters.include?(message_split[0])
+          updated_message << letters.rotate(shift_amount)[index]
+        else
+          updated_message << message_split[0]
+        end
+        message_split = message_split.rotate(1)
+        break if updated_message.length == message_split.length
+      end
+      break if updated_message.length == message_split.length
     end
+    updated_message
   end
 end

@@ -76,21 +76,20 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.shift
   end
 
-  def test_enigma_can_encrypt
-    # skip
+  def test_message_split
+    expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    assert_equal expected, @enigma.message_split("hello world")
+  end
+
+  def test_enigma_encryption
     @enigma.stubs(:shift).returns({
       "A"=>3,
       "B"=>27,
       "C"=>73,
       "D"=>20
     })
-    expected = {
-        encryption: "keder ohulw",
-        key: "02715",
-        date: "040895"
-      }
-    assert_equal expected, @enigma.encrypt("hello world", "02715",
-     "040895")
+
+    assert_equal "keder ohulw", @enigma.encryption("hello world", "02715", "040895")
   end
 end
 # # encrypt a message with a key and date
