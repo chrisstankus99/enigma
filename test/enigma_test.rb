@@ -92,6 +92,7 @@ class EnigmaTest < Minitest::Test
     })
 
     assert_equal "keder ohulw", @enigma.encryption("hello world", "02715", "040895")
+    assert_equal "123loexi", @enigma.encryption("123sleep", "02715", "040895")
   end
 
   def test_enigma_encrypt
@@ -120,6 +121,7 @@ class EnigmaTest < Minitest::Test
     })
 
     assert_equal "hello world", @enigma.decryption("keder ohulw", "02715", "040895")
+    assert_equal "123ziemw", @enigma.decryption("123sleep", "02715", "040895")
   end
 
   def test_enigma_decrypt

@@ -2,9 +2,6 @@ require 'date'
 
 class Enigma
 
-  def initialize
-  end
-
   def letters
     ("a".."z").to_a << " "
   end
@@ -40,8 +37,8 @@ class Enigma
   end
 
   def shift
-    date_sets.merge(key_sets) do |set_letter, old_num, new_num|
-      old_num += new_num
+    date_sets.merge(key_sets) do |set_letter, date_sets_value, key_sets_value|
+      date_sets_value += key_sets_value
     end
   end
 
