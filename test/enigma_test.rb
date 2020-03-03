@@ -107,15 +107,47 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
+
+  def test_decryption
+    @enigma.stubs(:shift).returns({
+      "A"=>3,
+      "B"=>27,
+      "C"=>73,
+      "D"=>20
+    })
+
+    assert_equal "hello world", @enigma.decryption("keder ohulw", "02715", "040895")
+  end
+
+  def test_enigma_decrypt
+    @enigma.stubs(:shift).returns({
+      "A"=>3,
+      "B"=>27,
+      "C"=>73,
+      "D"=>20
+    })
+    @enigma.stubs(:message).returns("hello world")
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    expected = {
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+  end
 end
 # # decrypt a message with a key and date
 # pry(main) > enigma.decrypt("keder ohulw", "02715", "040895")
 # #=>
-# #   {
-# #     decryption: "hello world",
-# #     key: "02715",
-# #     date: "040895"
-# #   }
+  # {
+  #   decryption: "hello world",
+  #   key: "02715",
+  #   date: "040895"
+  # }
 #
 # # encrypt a message with a key (uses today's date)
 # pry(main)> encrypted = enigma.encrypt("hello world", "02715")

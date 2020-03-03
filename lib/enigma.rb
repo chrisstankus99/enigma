@@ -75,4 +75,31 @@ class Enigma
     encrypted_set[:date] = date
     encrypted_set
   end
+
+  def decryption(message, key, date)
+    message_split = message_split(message)
+    updated_message = ""
+    loop do
+      shift.each do |shift_key, shift_amount|
+        index = letters.index(message_split[0])
+        if letters.include?(message_split[0])
+          updated_message << letters.rotate(-shift_amount)[index]
+        else
+          updated_message << message_split[0]
+        end
+        message_split = message_split.rotate(1)
+        break if updated_message.length == message_split.length
+      end
+      break if updated_message.length == message_split.length
+    end
+    updated_message
+  end
+
+  def decrypt(message, key = generate_key, date = generate_date)
+    decrypted_set = {}
+    decrypted_set[:decryption] = decryption(message, key, date)
+    decrypted_set[:key] = key
+    decrypted_set[:date] = date
+    decrypted_set
+  end
 end
