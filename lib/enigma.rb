@@ -9,7 +9,7 @@ class Enigma
     ("a".."z").to_a << " "
   end
 
-  def generate_keys
+  def generate_key
     rand(1..99999).to_s.rjust(5, "0")
   end
 
@@ -32,10 +32,10 @@ class Enigma
 
   def key_sets
     key_sets_hash = {}
-    key_sets_hash["A"] = generate_keys.scan(/\d/).join('')[0, 2].to_i
-    key_sets_hash["B"] = generate_keys.scan(/\d/).join('')[1, 2].to_i
-    key_sets_hash["C"] = generate_keys.scan(/\d/).join('')[2, 2].to_i
-    key_sets_hash["D"] = generate_keys.scan(/\d/).join('')[3, 3].to_i
+    key_sets_hash["A"] = generate_key.scan(/\d/).join('')[0, 2].to_i
+    key_sets_hash["B"] = generate_key.scan(/\d/).join('')[1, 2].to_i
+    key_sets_hash["C"] = generate_key.scan(/\d/).join('')[2, 2].to_i
+    key_sets_hash["D"] = generate_key.scan(/\d/).join('')[3, 3].to_i
     key_sets_hash
   end
 
@@ -66,5 +66,13 @@ class Enigma
       break if updated_message.length == message_split.length
     end
     updated_message
+  end
+
+  def encrypt(message, key = generate_key, date = generate_date)
+    encrypted_set = {}
+    encrypted_set[:encryption] = encryption(message, key, date)
+    encrypted_set[:key] = key
+    encrypted_set[:date] = date
+    encrypted_set
   end
 end
