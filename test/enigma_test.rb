@@ -130,7 +130,7 @@ class EnigmaTest < Minitest::Test
       "B"=>27,
       "C"=>73,
       "D"=>20
-      })
+    })
 
     @enigma.stubs(:message).returns("hello world")
     expected = {
