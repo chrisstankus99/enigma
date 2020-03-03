@@ -62,11 +62,13 @@ class EnigmaTest < Minitest::Test
       "B" => 0,
       "C" => 2,
       "D" => 5})
+
     @enigma.stubs(:key_sets).returns({
       "A" => 02,
       "B" => 27,
       "C" => 71,
       "D" => 15})
+
     expected = {
       "A"=>3,
       "B"=>27,
@@ -99,6 +101,7 @@ class EnigmaTest < Minitest::Test
       "C"=>73,
       "D"=>20
     })
+
     @enigma.stubs(:message).returns("hello world")
     expected = {
       encryption: "keder ohulw",
@@ -125,7 +128,8 @@ class EnigmaTest < Minitest::Test
       "B"=>27,
       "C"=>73,
       "D"=>20
-    })
+      })
+
     @enigma.stubs(:message).returns("hello world")
     expected = {
       decryption: "hello world",
