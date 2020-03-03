@@ -1,10 +1,7 @@
 require 'date'
 
 class Enigma
-
-  def initialize
-  end
-
+  
   def letters
     ("a".."z").to_a << " "
   end
